@@ -11,7 +11,7 @@ namespace WebApplication.DAL.Cadastros
     public class ExameDAL
     {
         private EFContext context = new EFContext();
-        public IQueryable<Exame> ObterExamesClassificadosPorDescricao()
+        public IQueryable<Exame> ObterExamesClassificadosPorDescricao() 
         {
             return context.Exames.OrderBy(b => b.Descricao);
         }
