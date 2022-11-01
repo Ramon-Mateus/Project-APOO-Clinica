@@ -10,6 +10,5 @@ namespace WebApplication.Models
         public long ConsultaId { get; set; }
         public DateTime DataHora { get; set; }
         public string Sintomas { get; set; }
-        public virtual ICollection<Exame> Exames { get; set; }
     }
 }
