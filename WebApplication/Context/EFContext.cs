@@ -11,5 +11,6 @@ namespace WebApplication.Context
     {
         public EFContext() : base("Asp_Net_MVC_CS") { }
         public DbSet<Exame> Exames { get; set; }
+        public DbSet<Consulta> Consultas { get; set; }
     }
 }

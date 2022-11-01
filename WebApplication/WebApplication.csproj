@@ -129,10 +129,12 @@
     <Compile Include="Context\EFContext.cs" />
     <Compile Include="Controllers\ProcedimentosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DAL\Cadastros\ConsultaDAL.cs" />
     <Compile Include="DAL\Cadastros\ExameDAL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Consulta.cs" />
     <Compile Include="Models\Exame.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -177,6 +179,11 @@
     <Content Include="Views\Procedimentos\Edit.cshtml" />
     <Content Include="Views\Procedimentos\Details.cshtml" />
     <Content Include="Views\Procedimentos\Delete.cshtml" />
+    <Content Include="Views\Procedimentos\IndexConsulta.cshtml" />
+    <Content Include="Views\Procedimentos\CreateConsulta.cshtml" />
+    <Content Include="Views\Procedimentos\EditConsulta.cshtml" />
+    <Content Include="Views\Procedimentos\DetailsConsulta.cshtml" />
+    <Content Include="Views\Procedimentos\DeleteConsulta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

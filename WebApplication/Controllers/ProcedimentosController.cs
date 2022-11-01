@@ -100,5 +100,94 @@ namespace WebApplication.Controllers
                 return View();
             }
         }
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        private ConsultaDAL consultaDAL = new ConsultaDAL();
+
+        private ActionResult ObterVisaoConsultaPorId(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(
+                HttpStatusCode.BadRequest);
+            }
+            Consulta consulta = consultaDAL.ObterConsultaPorId((long)id);
+            if (consulta == null)
+            {
+                return HttpNotFound();
+            }
+            return View(consulta);
+        }
+
+        private ActionResult GravarConsulta(Consulta consulta)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    consultaDAL.GravarConsulta(consulta);
+                    return RedirectToAction("Index");
+                }
+                return View(consulta);
+            }
+            catch
+            {
+                return View(consulta);
+            }
+        }
+        public ActionResult IndexConsulta()
+        {
+            return View(consultaDAL.ObterConsultasClassificadasPorId());
+        }
+
+        public ActionResult CreateConsulta()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateConsulta(Consulta consulta)
+        {
+            return GravarConsulta(consulta);
+        }
+
+        public ActionResult EditConsulta(long? id)
+        {
+            return ObterVisaoConsultaPorId(id);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditConsulta(Consulta consulta)
+        {
+            return GravarConsulta(consulta);
+        }
+
+        public ActionResult DetailsConsulta(long? id)
+        {
+            return ObterVisaoConsultaPorId(id);
+        }
+
+        public ActionResult DeleteConsulta(long? id)
+        {
+            return ObterVisaoConsultaPorId(id);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConsulta(long id)
+        {
+            try
+            {
+                Consulta consulta = consultaDAL.EliminarConsultaPorId(id);
+                TempData["Message"] = "Consulta " + consulta.ConsultaId + " foi removida";
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
     }
 }
