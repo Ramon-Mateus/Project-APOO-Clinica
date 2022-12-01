@@ -127,16 +127,20 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Context\EFContext.cs" />
+    <Compile Include="Controllers\Animal\EspeciesController.cs" />
     <Compile Include="Controllers\Procedimentos\ConsultasController.cs" />
     <Compile Include="Controllers\Procedimentos\ExamesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DAL\Cadastros\ConsultaDAL.cs" />
+    <Compile Include="DAL\Cadastros\EspecieDAL.cs" />
     <Compile Include="DAL\Cadastros\ExameDAL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Consulta.cs" />
+    <Compile Include="Models\Especie.cs" />
     <Compile Include="Models\Exame.cs" />
+    <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -185,6 +189,11 @@
     <Content Include="Views\Consultas\Edit.cshtml" />
     <Content Include="Views\Consultas\Details.cshtml" />
     <Content Include="Views\Consultas\Delete.cshtml" />
+    <Content Include="Views\Especies\Index.cshtml" />
+    <Content Include="Views\Especies\Create.cshtml" />
+    <Content Include="Views\Especies\Edit.cshtml" />
+    <Content Include="Views\Especies\Details.cshtml" />
+    <Content Include="Views\Especies\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

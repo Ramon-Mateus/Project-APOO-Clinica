@@ -16,5 +16,6 @@ namespace WebApplication.Context
         }
         public DbSet<Exame> Exames { get; set; }
         public DbSet<Consulta> Consultas { get; set; }
+        public DbSet<Especie> Especies { get; set; }
     }
 }
