@@ -437,8 +437,8 @@ C:\Users\ramon\projetos\Project-APOO-Exame\WebApplication\bin\pt-br\System.Web.R
 C:\Users\ramon\projetos\Project-APOO-Exame\WebApplication\bin\pt-br\System.Web.WebPages.resources.dll
 C:\Users\ramon\projetos\Project-APOO-Exame\WebApplication\bin\pt-br\System.Web.WebPages.Deployment.resources.dll
 C:\Users\ramon\projetos\Project-APOO-Exame\WebApplication\bin\pt-br\System.Web.WebPages.Razor.resources.dll
-C:\Users\ramon\projetos\Project-APOO-Exame\WebApplication\obj\Debug\WebApplication.csproj.AssemblyReference.cache
 C:\Users\ramon\projetos\Project-APOO-Exame\WebApplication\obj\Debug\WebApplication.csproj.CoreCompileInputs.cache
 C:\Users\ramon\projetos\Project-APOO-Exame\WebApplication\obj\Debug\WebApplication.csproj.CopyComplete
 C:\Users\ramon\projetos\Project-APOO-Exame\WebApplication\obj\Debug\WebApplication.dll
 C:\Users\ramon\projetos\Project-APOO-Exame\WebApplication\obj\Debug\WebApplication.pdb
+C:\Users\ramon\projetos\Project-APOO-Exame\WebApplication\obj\Debug\WebApplication.csproj.AssemblyReference.cache
