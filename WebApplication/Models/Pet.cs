@@ -18,6 +18,8 @@ namespace WebApplication.Models
         public int Idade { get; set; }
         public TipoSexo Sexo { get; set; }
         public long EspecieId { get; set; }
+        public long UsuarioId { get; set; }
         public Especie Especie { get; set; }
+        public Cliente Cliente { get; set; }
     }
 }

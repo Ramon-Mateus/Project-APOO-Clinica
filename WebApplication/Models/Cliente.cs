@@ -8,5 +8,6 @@ namespace WebApplication.Models
     public class Cliente : Usuario
     {
         public string Cpf { get; set; }
+        public virtual ICollection<Pet> Pets { get; set; }
     }
 }

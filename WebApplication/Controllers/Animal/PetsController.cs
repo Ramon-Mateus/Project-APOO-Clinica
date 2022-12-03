@@ -54,6 +54,7 @@ namespace WebApplication.Controllers.Animal
         public ActionResult Create()
         {
             ViewBag.EspecieId = new SelectList(context.Especies.OrderBy(b => b.Nome), "EspecieId", "Nome");
+            ViewBag.UsuarioId = new SelectList(context.Clientes.OrderBy(b => b.Nome), "UsuarioId", "Nome");
             return View();
         }
 
@@ -68,6 +69,7 @@ namespace WebApplication.Controllers.Animal
         {
             Pet pet = context.Pets.Find(id);
             ViewBag.EspecieId = new SelectList(context.Especies.OrderBy(b => b.Nome), "EspecieId", "Nome", pet.EspecieId);
+            ViewBag.UsuarioId = new SelectList(context.Clientes.OrderBy(b => b.Nome), "UsuarioId", "Nome", pet.UsuarioId);
             return ObterVisaoPetPorId(id);
         }
 
