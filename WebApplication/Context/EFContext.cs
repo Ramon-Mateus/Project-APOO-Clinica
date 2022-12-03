@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using WebApplication.Models;
+using WebApplication.Models.ViewModels;
 
 namespace WebApplication.Context
 {
@@ -21,5 +22,6 @@ namespace WebApplication.Context
         public DbSet<Veterinario> Veterinarios { get; set; }
         public DbSet<Pet> Pets { get; set; }
         public DbSet<Secretario> Secretarios { get; set; }
+        public virtual DbSet<ConsultaExame> ConsultaExames { get; set; }
     }
 }

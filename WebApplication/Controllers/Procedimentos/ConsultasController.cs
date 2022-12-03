@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication.Context;
 using WebApplication.DAL.Cadastros;
 using WebApplication.Models;
+using WebApplication.Models.ViewModels;
 
 namespace WebApplication.Controllers.Procedimentos
 {
@@ -13,6 +16,7 @@ namespace WebApplication.Controllers.Procedimentos
     {
 
         private ConsultaDAL consultaDAL = new ConsultaDAL();
+        private EFContext context = new EFContext();
 
         private ActionResult ObterVisaoConsultaPorId(long? id)
         {
@@ -64,19 +68,120 @@ namespace WebApplication.Controllers.Procedimentos
 
         public ActionResult Edit(long? id)
         {
-            return ObterVisaoConsultaPorId(id);
+            // return ObterVisaoConsultaPorId(id);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(
+                HttpStatusCode.BadRequest);
+            }
+            Consulta consulta = consultaDAL.ObterConsultaPorId((long)id);
+            if (consulta == null)
+            {
+                return HttpNotFound();
+            }
+            var ConsultasExames = from c in context.Exames
+                                  select new
+                                  {
+                                      c.ExameId,
+                                      c.Descricao,
+                                      Checked = ((from ce in context.ConsultaExames
+                                                  where (ce.ConsultaId == id) & (ce.ExameId == c.ExameId)
+                                                  select ce).Count() > 0)
+                                  };
+            var consultasViewModel = new ConsultasViewModel();
+            consultasViewModel.ConsultaId = id.Value;
+            consultasViewModel.Data_hora = consulta.DataHora;
+            consultasViewModel.Sintomas = consulta.Sintomas;
+            var checkboxListExames = new List<CheckBoxViewModel>();
+            foreach (var item in ConsultasExames)
+            {
+                checkboxListExames.Add(new CheckBoxViewModel
+                {
+                    Id = item.ExameId,
+                    Descricao = item.Descricao,
+                    Checked = item.Checked
+                });
+            }
+            consultasViewModel.Exames = checkboxListExames;
+            return View(consultasViewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Consulta consulta)
+        public ActionResult Edit(ConsultasViewModel consulta)
         {
-            return GravarConsulta(consulta);
+            // return GravarConsulta(consulta);
+            if (ModelState.IsValid)
+            {
+                var consultaSelecionada = context.Consultas.Find(consulta.ConsultaId);
+                consultaSelecionada.ConsultaId = consulta.ConsultaId;
+                consultaSelecionada.DataHora = consulta.Data_hora;
+                consultaSelecionada.Sintomas = consulta.Sintomas;
+                foreach (var item in context.ConsultaExames)
+                {
+                    if (item.ConsultaId == consulta.ConsultaId)
+                    {
+                        context.Entry(item).State = EntityState.Deleted;
+                    }
+                }
+                if (consulta.Exames != null)
+                {
+                    foreach (var item in consulta.Exames)
+                    {
+                        if (item.Checked)
+                        {
+                            context.ConsultaExames.Add(new ConsultaExame()
+                            {
+                                ConsultaId = consulta.ConsultaId,
+                                ExameId = item.Id
+                            });
+                        }
+                    }
+                }
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(consulta);
         }
 
         public ActionResult Details(long? id)
         {
-            return ObterVisaoConsultaPorId(id);
+            // return ObterVisaoConsultaPorId(id);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(
+                HttpStatusCode.BadRequest);
+            }
+            Consulta consulta = consultaDAL.ObterConsultaPorId((long)id);
+            if (consulta == null)
+            {
+                return HttpNotFound();
+            }
+            var ConsultasExames = from c in context.Exames
+                                  select new
+                                  {
+                                      c.ExameId,
+                                      c.Descricao,
+                                      Checked = ((from ce in context.ConsultaExames
+                                                  where (ce.ConsultaId == id) & (ce.ExameId == c.ExameId)
+                                                  select ce).Count() > 0)
+                                  };
+            var consultaViewModel = new ConsultasViewModel();
+            consultaViewModel.ConsultaId = id.Value;
+            consultaViewModel.Data_hora = consulta.DataHora;
+            consultaViewModel.Sintomas = consulta.Sintomas;
+            var checkboxListExames = new List<CheckBoxViewModel>();
+            foreach (var item in ConsultasExames)
+            {
+                checkboxListExames.Add(new CheckBoxViewModel
+                {
+                    Id = item.ExameId,
+                    Descricao = item.Descricao,
+                    Checked = item.Checked
+                });
+            }
+            consultaViewModel.Exames = checkboxListExames;
+            return View(consultaViewModel);
         }
 
         public ActionResult Delete(long? id)

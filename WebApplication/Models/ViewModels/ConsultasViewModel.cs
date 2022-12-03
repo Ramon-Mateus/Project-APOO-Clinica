@@ -4,14 +4,14 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace WebApplication.Models
+namespace WebApplication.Models.ViewModels
 {
-    public class Consulta
+    public class ConsultasViewModel
     {
         public long ConsultaId { get; set; }
         [DataType(DataType.Date)]
-        public DateTime DataHora { get; set; }
+        public DateTime Data_hora { get; set; }
         public string Sintomas { get; set; }
-        public virtual ICollection<Exame> Exames { get; set; }
+        public List<CheckBoxViewModel> Exames { get; set; }
     }
 }

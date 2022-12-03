@@ -147,12 +147,15 @@
     </Compile>
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Consulta.cs" />
+    <Compile Include="Models\ConsultaExame.cs" />
     <Compile Include="Models\Especie.cs" />
     <Compile Include="Models\Exame.cs" />
     <Compile Include="Models\Pet.cs" />
     <Compile Include="Models\Secretario.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\Veterinario.cs" />
+    <Compile Include="Models\ViewModels\CheckBoxViewModel.cs" />
+    <Compile Include="Models\ViewModels\ConsultasViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

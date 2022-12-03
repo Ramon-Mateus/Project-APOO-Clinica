@@ -1,4 +1,4 @@
-﻿@model WebApplication.Models.Consulta
+﻿@model WebApplication.Models.ViewModels.ConsultasViewModel
 
 @{
     Layout = null;
@@ -17,21 +17,42 @@
         <hr />
         <dl class="dl-horizontal">
             <dt>
-                @Html.DisplayNameFor(model => model.DataHora)
+                @Html.DisplayNameFor(model => model.Data_hora)
             </dt>
-    
+
             <dd>
-                @Html.DisplayFor(model => model.DataHora)
+                @Html.DisplayFor(model => model.Data_hora)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.Sintomas)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Sintomas)
             </dd>
-    
+
+            <dt>@Html.DisplayNameFor(model => model.Exames)</dt>
+            <dd>
+                @if (Model.Exames != null)
+                {
+                    foreach (var item in Model.Exames)
+                    {
+                        if (item.Checked)
+                        {
+                            <div>
+                                <span class="glyphicon glyphicon-list-alt"></span><Text>&nbsp;</Text>
+                                @item.Descricao
+                            </div>
+                        }
+                    }
+                }
+                else
+                {
+                    <span class="glyphicon glyphicon-list-alt"></span><text>Sem Exames Registrados</Text>
+                }
+            </dd>
+
         </dl>
     </div>
     <p>
