@@ -13,12 +13,12 @@ namespace WebApplication.DAL.Cadastros
         private EFContext context = new EFContext();
         public IQueryable<Pet> ObterPetsClassificadosPorId()
         {
-            return context.Pets.OrderBy(b => b.PetId);
+            return context.Pets.OrderBy(b => b.PetId).Include(c => c.Especie);
         }
 
         public Pet ObterPetPorId(long id)
         {
-            return context.Pets.Where(c => c.PetId == id).First();
+            return context.Pets.Where(c => c.PetId == id).Include(f => f.Especie).First();
         }
         public void GravarPet(Pet pet)
         {

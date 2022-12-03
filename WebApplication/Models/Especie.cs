@@ -9,5 +9,6 @@ namespace WebApplication.Models
     {
         public long EspecieId { get; set; }
         public string Nome { get; set; }
+        public virtual ICollection<Pet> Pets { get; set; }
     }
 }

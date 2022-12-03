@@ -13,7 +13,10 @@
 </head>
 <body>
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Criar nova Especie", "Create")
+    </p>
+    <p>
+        @Html.ActionLink("Criar novo Pet", "Create", "Pets")
     </p>
     <table class="table">
         <tr>
@@ -22,20 +25,21 @@
             </th>
             <th></th>
         </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.EspecieId }) |
-                @Html.ActionLink("Details", "Details", new { id=item.EspecieId }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.EspecieId })
-            </td>
-        </tr>
-    }
-    
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.EspecieId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.EspecieId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.EspecieId })
+                </td>
+            </tr>
+        }
+
     </table>
 </body>
 </html>

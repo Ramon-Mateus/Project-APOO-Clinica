@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication.Context;
 using WebApplication.DAL.Cadastros;
 using WebApplication.Models;
 
@@ -12,6 +13,7 @@ namespace WebApplication.Controllers.Animal
     public class PetsController : Controller
     {
         private PetDAL petDAL = new PetDAL();
+        private EFContext context = new EFContext();
 
         private ActionResult ObterVisaoPetPorId(long? id)
         {
@@ -51,6 +53,7 @@ namespace WebApplication.Controllers.Animal
 
         public ActionResult Create()
         {
+            ViewBag.EspecieId = new SelectList(context.Especies.OrderBy(b => b.Nome), "EspecieId", "Nome");
             return View();
         }
 
@@ -63,6 +66,8 @@ namespace WebApplication.Controllers.Animal
 
         public ActionResult Edit(long? id)
         {
+            Pet pet = context.Pets.Find(id);
+            ViewBag.EspecieId = new SelectList(context.Especies.OrderBy(b => b.Nome), "EspecieId", "Nome", pet.EspecieId);
             return ObterVisaoPetPorId(id);
         }
 
