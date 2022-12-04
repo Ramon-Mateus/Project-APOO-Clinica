@@ -18,7 +18,7 @@ namespace WebApplication.DAL.Cadastros
 
         public Consulta ObterConsultaPorId(long id)
         {
-            return context.Consultas.Where(c => c.ConsultaId == id)/*.Include("Exame")*/.First();
+            return context.Consultas.Where(c => c.ConsultaId == id).First();
         }
         public void GravarConsulta(Consulta consulta)
         {

@@ -1,4 +1,4 @@
-﻿@model WebApplication.Models.ViewModels.ConsultasViewModel
+﻿@model WebApplication.Models.Consulta
 
 @{
     Layout = null;
@@ -27,10 +27,10 @@
         @Html.HiddenFor(model => model.ConsultaId)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Data_hora, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.DataHora, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Data_hora, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Data_hora, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.DataHora, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DataHora, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -45,13 +45,13 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Exames, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @for (int i = 0; i < Model.Exames.Count(); i++)
+                @for (int i = 0; i < Model.ExamesCK.Count(); i++)
                 {
-                    @Html.EditorFor(m => Model.Exames[i].Checked)<text>&nbsp;</text>
-                    @Html.DisplayFor(m => Model.Exames[i].Descricao)<text>&nbsp;</text>
+                    @Html.EditorFor(m => Model.ExamesCK[i].Checked)<text>&nbsp;</text>
+                    @Html.DisplayFor(m => Model.ExamesCK[i].Descricao)<text>&nbsp;</text>
                     <br />
-                    @Html.HiddenFor(m => Model.Exames[i].Descricao)
-                    @Html.HiddenFor(m => Model.Exames[i].Id)
+                    @Html.HiddenFor(m => Model.ExamesCK[i].Descricao)
+                    @Html.HiddenFor(m => Model.ExamesCK[i].Id)
                 }
             </div>
         </div>

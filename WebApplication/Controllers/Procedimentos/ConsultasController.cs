@@ -56,6 +56,8 @@ namespace WebApplication.Controllers.Procedimentos
 
         public ActionResult Create()
         {
+            // ViewBag.PetId     = new SelectList(context.Pets.OrderBy(b => b.Nome),     "PetId"    , "Nome");
+            // ViewBag.UsuarioId = new SelectList(context.Clientes.OrderBy(b => b.Nome), "UsuarioId", "Nome");
             return View();
         }
 
@@ -88,10 +90,10 @@ namespace WebApplication.Controllers.Procedimentos
                                                   where (ce.ConsultaId == id) & (ce.ExameId == c.ExameId)
                                                   select ce).Count() > 0)
                                   };
-            var consultasViewModel = new ConsultasViewModel();
-            consultasViewModel.ConsultaId = id.Value;
-            consultasViewModel.Data_hora = consulta.DataHora;
-            consultasViewModel.Sintomas = consulta.Sintomas;
+            var consultas = new Consulta();
+            consultas.ConsultaId = id.Value;
+            consultas.DataHora = consulta.DataHora;
+            consultas.Sintomas = consulta.Sintomas;
             var checkboxListExames = new List<CheckBoxViewModel>();
             foreach (var item in ConsultasExames)
             {
@@ -102,20 +104,20 @@ namespace WebApplication.Controllers.Procedimentos
                     Checked = item.Checked
                 });
             }
-            consultasViewModel.Exames = checkboxListExames;
-            return View(consultasViewModel);
+            consultas.ExamesCK = checkboxListExames;
+            return View(consultas);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(ConsultasViewModel consulta)
+        public ActionResult Edit(Consulta consulta)
         {
             // return GravarConsulta(consulta);
             if (ModelState.IsValid)
             {
                 var consultaSelecionada = context.Consultas.Find(consulta.ConsultaId);
                 consultaSelecionada.ConsultaId = consulta.ConsultaId;
-                consultaSelecionada.DataHora = consulta.Data_hora;
+                consultaSelecionada.DataHora = consulta.DataHora;
                 consultaSelecionada.Sintomas = consulta.Sintomas;
                 foreach (var item in context.ConsultaExames)
                 {
@@ -124,9 +126,9 @@ namespace WebApplication.Controllers.Procedimentos
                         context.Entry(item).State = EntityState.Deleted;
                     }
                 }
-                if (consulta.Exames != null)
+                if (consulta.ExamesCK != null)
                 {
-                    foreach (var item in consulta.Exames)
+                    foreach (var item in consulta.ExamesCK)
                     {
                         if (item.Checked)
                         {
@@ -166,10 +168,10 @@ namespace WebApplication.Controllers.Procedimentos
                                                   where (ce.ConsultaId == id) & (ce.ExameId == c.ExameId)
                                                   select ce).Count() > 0)
                                   };
-            var consultaViewModel = new ConsultasViewModel();
-            consultaViewModel.ConsultaId = id.Value;
-            consultaViewModel.Data_hora = consulta.DataHora;
-            consultaViewModel.Sintomas = consulta.Sintomas;
+            var consultas = new Consulta();
+            consultas.ConsultaId = id.Value;
+            consultas.DataHora = consulta.DataHora;
+            consultas.Sintomas = consulta.Sintomas;
             var checkboxListExames = new List<CheckBoxViewModel>();
             foreach (var item in ConsultasExames)
             {
@@ -180,8 +182,8 @@ namespace WebApplication.Controllers.Procedimentos
                     Checked = item.Checked
                 });
             }
-            consultaViewModel.Exames = checkboxListExames;
-            return View(consultaViewModel);
+            consultas.ExamesCK = checkboxListExames;
+            return View(consultas);
         }
 
         public ActionResult Delete(long? id)

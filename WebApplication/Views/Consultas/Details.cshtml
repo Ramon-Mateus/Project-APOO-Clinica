@@ -1,4 +1,4 @@
-﻿@model WebApplication.Models.ViewModels.ConsultasViewModel
+﻿@model WebApplication.Models.Consulta
 
 @{
     Layout = null;
@@ -17,11 +17,11 @@
         <hr />
         <dl class="dl-horizontal">
             <dt>
-                @Html.DisplayNameFor(model => model.Data_hora)
+                @Html.DisplayNameFor(model => model.DataHora)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.Data_hora)
+                @Html.DisplayFor(model => model.DataHora)
             </dd>
 
             <dt>
@@ -34,9 +34,9 @@
 
             <dt>@Html.DisplayNameFor(model => model.Exames)</dt>
             <dd>
-                @if (Model.Exames != null)
+                @if (Model.ExamesCK != null)
                 {
-                    foreach (var item in Model.Exames)
+                    foreach (var item in Model.ExamesCK)
                     {
                         if (item.Checked)
                         {
