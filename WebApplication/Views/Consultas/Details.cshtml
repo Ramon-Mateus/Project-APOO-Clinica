@@ -32,6 +32,18 @@
                 @Html.DisplayFor(model => model.Sintomas)
             </dd>
 
+            <dt>Especie</dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Pet.Nome)
+            </dd>
+
+            <dt>Veterinário</dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Veterinario.Nome)
+            </dd>
+
             <dt>@Html.DisplayNameFor(model => model.Exames)</dt>
             <dd>
                 @if (Model.ExamesCK != null)

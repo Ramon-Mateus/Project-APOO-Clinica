@@ -20,19 +20,31 @@
             <dt>
                 @Html.DisplayNameFor(model => model.DataHora)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.DataHora)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.Sintomas)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Sintomas)
             </dd>
-    
+
+            <dt>Especie</dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Pet.Nome)
+            </dd>
+
+            <dt>Veterinário</dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Veterinario.Nome)
+            </dd>
+
         </dl>
     
         @using (Html.BeginForm()) {

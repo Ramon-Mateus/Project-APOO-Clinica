@@ -13,12 +13,12 @@ namespace WebApplication.DAL.Cadastros
         private EFContext context = new EFContext();
         public IQueryable<Consulta> ObterConsultasClassificadasPorId()
         {
-            return context.Consultas.OrderBy(b => b.ConsultaId);
+            return context.Consultas.OrderBy(b => b.ConsultaId).Include(e => e.Pet).Include(c => c.Veterinario);
         }
 
         public Consulta ObterConsultaPorId(long id)
         {
-            return context.Consultas.Where(c => c.ConsultaId == id).First();
+            return context.Consultas.Where(c => c.ConsultaId == id).Include(f => f.Pet).Include(c => c.Veterinario).First();
         }
         public void GravarConsulta(Consulta consulta)
         {

@@ -56,8 +56,8 @@ namespace WebApplication.Controllers.Procedimentos
 
         public ActionResult Create()
         {
-            // ViewBag.PetId     = new SelectList(context.Pets.OrderBy(b => b.Nome),     "PetId"    , "Nome");
-            // ViewBag.UsuarioId = new SelectList(context.Clientes.OrderBy(b => b.Nome), "UsuarioId", "Nome");
+            ViewBag.PetId     = new SelectList(context.Pets.OrderBy(b => b.Nome),     "PetId"    , "Nome");
+            ViewBag.UsuarioId = new SelectList(context.Clientes.OrderBy(b => b.Nome), "UsuarioId", "Nome");
             return View();
         }
 
@@ -105,6 +105,8 @@ namespace WebApplication.Controllers.Procedimentos
                 });
             }
             consultas.ExamesCK = checkboxListExames;
+            ViewBag.PetId = new SelectList(context.Pets.OrderBy(b => b.Nome), "PetId", "Nome");
+            ViewBag.UsuarioId = new SelectList(context.Clientes.OrderBy(b => b.Nome), "UsuarioId", "Nome");
             return View(consultas);
         }
 
@@ -143,6 +145,8 @@ namespace WebApplication.Controllers.Procedimentos
                 context.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.PetId = new SelectList(context.Pets.OrderBy(b => b.Nome), "PetId", "Nome");
+            ViewBag.UsuarioId = new SelectList(context.Clientes.OrderBy(b => b.Nome), "UsuarioId", "Nome");
             return View(consulta);
         }
 
@@ -172,6 +176,8 @@ namespace WebApplication.Controllers.Procedimentos
             consultas.ConsultaId = id.Value;
             consultas.DataHora = consulta.DataHora;
             consultas.Sintomas = consulta.Sintomas;
+            consultas.Pet = consulta.Pet;
+            consultas.Veterinario = consulta.Veterinario;
             var checkboxListExames = new List<CheckBoxViewModel>();
             foreach (var item in ConsultasExames)
             {
