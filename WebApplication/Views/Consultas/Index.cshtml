@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<WebApplication.Models.Consulta>
 
 @{
-    Layout = null;
+    
 }
 
 <!DOCTYPE html>
@@ -12,11 +12,8 @@
     <title>Index</title>
 </head>
 <body>
-    <p>
-        @Html.ActionLink("Criar nova Consulta", "Create")
-    </p>
-    <p>
-        @Html.ActionLink("Criar novo Exame", "Create", "Exames")
+    <p id="create">
+        @Html.ActionLink("Criar Consulta", "Create")
     </p>
     <table class="table">
         <tr>

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<WebApplication.Models.Pet>
 
 @{
-    Layout = null;
+    
 }
 
 <!DOCTYPE html>
@@ -12,14 +12,8 @@
     <title>Index</title>
 </head>
 <body>
-    <p>
-        @Html.ActionLink("Criar novo Pet", "Create")
-    </p>
-    <p>
-        @Html.ActionLink("Criar novo Cliente", "Create", "Clientes")
-    </p>
-    <p>
-        @Html.ActionLink("Criar nova Especie", "Create", "Especies")
+    <p id="create">
+        @Html.ActionLink("Criar Pet", "Create")
     </p>
     <table class="table">
         <tr>
